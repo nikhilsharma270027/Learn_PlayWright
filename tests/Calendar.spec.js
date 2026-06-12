@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test.only("Calendar UI Controls", async ({ page }) => {
+test("Calendar UI Controls", async ({ page }) => {
 
     const monthNumber = "8";
     const yearNumber = "2024";

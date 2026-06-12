@@ -1,0 +1,8 @@
+
+
+3: Inspection
+npx playwright test --ui
+npx playwright test --debug
+
+Imp to get generate and get different language code
+npx playwright codegen https://rahulshettyacademy.com/angularpractice  

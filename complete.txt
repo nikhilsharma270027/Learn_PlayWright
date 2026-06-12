@@ -7,3 +7,6 @@ section 6: 29
 section 6: 36 
 
 section 7: started
+section 9 : started assignments
+
+section 10: 60
