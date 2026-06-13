@@ -61,7 +61,7 @@ test("Assignment 2", async ({ page }) => {
 });
 
 
-test.only('refund not eligible for group ticket booking', async ({ page }) => {
+test('refund not eligible for group ticket booking', async ({ page }) => {
   await loginAndGoToBooking(page);
   await page.goto(`${BASE_URL}/events`);
   await page.getByTestId("event-card").last().getByTestId("book-now-btn").click();
