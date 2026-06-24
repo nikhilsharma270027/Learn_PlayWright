@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-test.only("Popup Validations", async ({ page }) => {
+test("Popup Validations", async ({ page }) => {
   await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
   //   await page.click("https:/google.com");
   //   await page.goBack(); // to go back to the previous page
