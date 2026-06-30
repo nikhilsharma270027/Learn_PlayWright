@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   
-  "scripts": {},
+  "scripts": {
+    "test" : "npx playwright test tests/WebAPIPart1.spec.js --headed",
+    "headtest": "npx playwright test --headed"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

@@ -13,16 +13,16 @@ test.beforeAll(async () => {
   // Login API call to get the auth token
   const apiContext = await request.newContext();
   const apiUtils = new APIUtils(apiContext, loginPayload);
-  console.log("API Utils:", apiUtils);
+  // console.log("API Utils:", apiUtils);
   response = await apiUtils.createOrder(orderPayload);
-  console.log("Response BeforeAll:", response);
+  // console.log("Response BeforeAll:", response);
 }, );
 
 
 // beforeEach hook runs before each individual test.
 test.beforeEach(() => {});
 
-test.only("Client App login", async ({ page }) => {
+test("Client App login", async ({ page }) => {
   // ApiUtils class to handle API calls
   // const apiUtils = new ApiUtils(apiContext, loginPayload);
   // const orderId = await apiUtils.createOrder(token);
@@ -39,6 +39,7 @@ test.only("Client App login", async ({ page }) => {
   //   await page.locator("[value='Login']").click();
 
   await page.locator("button[routerlink*='myorders']").click();
+  await page.on("request", request => console.log("Request URL: " + request.url()));
   await page.locator("tbody").waitFor();
   const rows = await page.locator("tbody tr");
   const rowCount = await rows.count();
@@ -54,6 +55,7 @@ test.only("Client App login", async ({ page }) => {
   }
 
   const orderIdDetails = await page.locator(".col-text").textContent();
+  await page.on("response", response => console.log("Response URL: " + response.url(), response.status(), response.statusText()));
   // console.log(orderIdDetails);
   expect(response.orderId.includes(orderIdDetails)).toBeTruthy();
   await page.pause();

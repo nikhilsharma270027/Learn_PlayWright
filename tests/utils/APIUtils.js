@@ -8,7 +8,7 @@ class APIUtils {
     const response = await this.apiContext.post("https://www.rahulshettyacademy.com/api/ecom/auth/login", {
       data: this.loginPayload,
     });
-    console.log("Response", response);
+    // console.log("Response", response);
 
     // expect(response.status()).toBe(200);
     await expect(response.ok()).toBeTruthy();
@@ -17,7 +17,7 @@ class APIUtils {
     // console.log(responseJson);
     const authToken = responseJson.token;
     let token = authToken;
-    console.log(token);
+    // console.log(token);
     return token;
   }
 
@@ -35,7 +35,7 @@ class APIUtils {
 
     const orderResponseJson = await orderResponse.json();
     const orderId = orderResponseJson.orders[0];
-    console.log("Order ID:", orderId);
+    // console.log("Order ID:", orderId);
     response.orderId = orderId;
 
     return response;

@@ -1,0 +1,29 @@
+// -------------------section 12: -------------------//
+In Playwright, context.storageState() is a feature that takes a "snapshot" of your browser's logged-in session, saving things like cookies, localStorage, and sessionStorage into a JSON file. You can then load this file in future tests, letting you skip the login screen entirely.
+Why is it useful?
+
+Saves Time: You only have to log in manually once. Subsequent tests load the session file and instantly start logged in.
+Avoids Bottlenecks: By skipping repeated login forms, your tests run much faster.Bypasses 
+Complex Logins: It helps you easily bypass tricky authentication flows like Multi-Factor Authentication (MFA) or Single Sign-On (SSO).
+
+import { test, expect } from "@playwright/test";
+// Login UI -> jso
+let webcontext;
+const email = "anshika@gmail.com";
+const password = "Iamking@000";
+
+//  Test browser, cartorder, orderdetails, order history
+
+test.beforeAll(async ({ browser }) => 
+    {   
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await page.goto("https://rahulshettyacademy.com/client");
+        await page.locator("#userEmail").fill(email);
+        await page.locator("#userPassword").fill(password);
+        await page.locator("[value='Login']").click();
+        await page.waitForLoadState("networkidle");
+        await context.storageState({path: 'state.json'})
+        // invoke browser by injecting storage state
+        webcontext = await browser.newContext({storageState: 'state.json'})
+});
